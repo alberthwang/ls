@@ -20,7 +20,7 @@ def getNum():
 
 def getChoice():
     while True:
-        choice = input('Did you want the sum(s) or product(p) of all the numbers between 1 and the entered integer?')
+        choice = input('Did you want the sum(s) or product(p)')
         if choice.lower() == 's' or choice.lower() == 'p':
             return choice.lower()
         else:
@@ -47,4 +47,57 @@ def run():
     else:
         product(num)
 
-run()
+def getNums():
+
+    while True:
+        prompt = input('Enter a list of nums separated by space ')
+        nums = prompt.split()
+        valid = True
+        numslist = []
+        # print(numslist , ' + 1')
+        # print(nums, '+2')
+        for num in nums:
+            if not num.isnumeric() or int(num) < 0:
+                print('invalid input')
+                valid = False
+                break
+            else:
+                numslist.append(int(num))
+        
+        if valid:
+            print(numslist)
+            return numslist
+            break
+        else:
+            print('new numbers')
+
+        
+def getSum(nums):
+    print(f'The sum of {nums} is {sum(nums)}')
+    return sum(nums)
+
+def getProduct(nums):
+    total = 1
+    for num in nums:
+        total *= num
+    
+    print(f'The product of {nums} is {total}')
+    return total
+
+    
+
+def run2():
+    nums = getNums()
+    choice = getChoice()
+    print(nums)
+
+    if choice == 's':
+        getSum(nums)
+    elif choice == 'p':
+        getProduct(nums)
+    else:
+        print("I'm going to give you the product anyways.")
+        getProduct(nums)
+
+
+run2()
